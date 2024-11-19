@@ -6,7 +6,7 @@ class CounterStorage {
     private impl: CounterStorageImplementation;
 
     private constructor() {
-        if (window.getCounterStorageImplementation) {
+        if (typeof window.getCounterStorageImplementation === 'function') {
             this.impl = window.getCounterStorageImplementation();
         } else {
             this.impl = new LocalCounterStorage();

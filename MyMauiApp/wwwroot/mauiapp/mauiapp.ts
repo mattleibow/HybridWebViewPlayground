@@ -5,15 +5,18 @@ class MauiCounterStorage implements CounterStorageImplementation {
     }
 
     async getCount(): Promise<number> {
-        const count = await window.HybridWebView.InvokeDotNetAsync("GetCount");
-        return ount;
+        const count = await window.HybridWebView.InvokeDotNet("MauiCounterStorage_GetCount");
+        return Promise.resolve(count);
     }
 
-    setCount(newCount: number): Promise<void> {
-        await window.HybridWebView.InvokeDotNetAsync("SetCount");
+    async setCount(newCount: number): Promise<void> {
+        await window.HybridWebView.InvokeDotNet("MauiCounterStorage_SetCount", [newCount]);
+        return Promise.resolve();
     }
 }
 
 window.getCounterStorageImplementation = () => {
+    window.HybridWebView.SendRawMessage("About to construct the MauiCounterStorage instance.");
+
     return new MauiCounterStorage();
 };

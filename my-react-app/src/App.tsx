@@ -8,11 +8,16 @@ function App() {
     const counterStorage = CounterStorage.getInstance();
     const [count, setCount] = useState(-1);
 
-    counterStorage
-        .getCount()
-        .then(loaded => setCount(loaded))
-        .catch(err => console.error(`There was an error loading the count: ${err}`));
+    // if this is the first render, then load the
+    // count from the storage
+    if (count === -1) {
+        counterStorage
+            .getCount()
+            .then(loaded => setCount(loaded))
+            .catch(err => console.error(`There was an error loading the count: ${err}`));
+    }
 
+    // when the count changes, update the storage
     useEffect(() => {
         if (count === -1)
             return;

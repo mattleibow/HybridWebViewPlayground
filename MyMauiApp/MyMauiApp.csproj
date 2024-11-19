@@ -59,10 +59,13 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<PropertyGroup>
+		<TypeScriptTarget>es2015</TypeScriptTarget>
+	</PropertyGroup>
 	<ItemGroup>
-		<MauiAsset Include="wwwroot\**" Link="wwwroot\%(RecursiveDir)%(Filename)%(Extension)" />
+		<MauiAsset Include="wwwroot\**\*.js" Link="wwwroot\%(RecursiveDir)%(Filename)%(Extension)" />
 		<MauiAsset Include="..\my-react-app\dist\**" Link="wwwroot\%(RecursiveDir)%(Filename)%(Extension)" />
-		<ConfigFile Include="tsconfig.json" />
+		<TypeScriptCompile Remove="bin\**;obj\**" />
 	</ItemGroup>
 
 	<ItemGroup>

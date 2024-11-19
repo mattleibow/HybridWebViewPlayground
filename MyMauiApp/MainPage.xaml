@@ -4,11 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MyMauiApp.MainPage">
 
-    <HybridWebView
-        x:Name="hybridHost"
-        HybridRoot="wwwroot"
-        DefaultFile="index.html"
-        RawMessageReceived="OnRawMessage"
-        />
+    <Grid>
 
+        <HybridWebView
+            x:Name="hybridHost"
+            HybridRoot="wwwroot"
+            DefaultFile="index.html"
+            RawMessageReceived="OnRawMessage"
+            />
+
+        <Button
+            Text="Test"
+            Clicked="OnTestClicked"
+            HorizontalOptions="End"
+            VerticalOptions="Start" />
+
+    </Grid>
+    
 </ContentPage>
